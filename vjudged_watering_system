@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;//Se lee el numero de huecos que hay en el sistema
+    double A,B;
+    cin>>A>>B;
+    vector<int> huecos;
+    long double suma = 0;
+    double primervar;
+    cin>>primervar;
+    suma=suma+primervar;
+    for(int i=0 ; i<(n - 1) ; i++){
+        double valor;
+        cin>>valor;
+        huecos.push_back(valor);
+        suma = suma + valor;
+    }
+    
+    sort( huecos.begin() , huecos.end() );
+    int cantidad = 0;
+    double resultado;
+    resultado = (primervar*A)/suma;
+    //cout<<"Valor del resultado "<<resultado<<endl;
+    if(resultado >= B) cout<<"0"<<endl;
+    else{
+        int posicion = 0;
+        while(resultado<B){
+            suma = suma - huecos[posicion];
+            posicion++;
+            resultado = (primervar*A)/suma;
+            //cout<<"valor del resultado "<<resultado<<endl;
+            cantidad++;
+        }
+        cout<<cantidad<<endl;
+    }
+    return 0;
+}
